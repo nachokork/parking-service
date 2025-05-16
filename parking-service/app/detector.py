@@ -21,7 +21,6 @@ logger = logging.getLogger(__name__)
 
 class ParkingDetector:
     def __init__(self):
-            # 🔒 Agrega todas las clases necesarias a la lista de "safe globals"
             torch.serialization.add_safe_globals([
                 Module,
                 BatchNorm2d,
@@ -46,7 +45,6 @@ class ParkingDetector:
 
             ])
 
-            # 📦 Carga el modelo YOLO con la ruta desde tus settings
             self.model = YOLO(settings.MODEL_PATH)
 
     def detect_spots(self, img: np.ndarray) -> List[Dict]:

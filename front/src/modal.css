@@ -55,7 +55,7 @@
 .modal-close:active {
     background: transparent !important;
     outline: none !important;
-    box-shadow: none !important; /* por si hubiera sombra */
+    box-shadow: none !important;
 }
 .modal-close:hover,
 .modal-close:focus {
