@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+      - redis
+      - parking_service
+    volumes:
+      - ./api:/var/www/html
+    environment:
+      - PARKING_SERVICE_URL=http://parking_service:8000
+    networks:
+      - app_network
+
+  parking_service:
+    build:
+      context: ./parking-service
+      dockerfile: Dockerfile
+    ports:
+      - "8100:8100"
+    volumes:
+      - ./parking-service/app:/app
+      - ./parking-service/parking_detection/exp/weights:/app/parking_detection/exp/weights
+      - ./parking-service/datasets:/app/datasets
+    environment:
+      - MODEL_PATH=/app/parking_detection/exp/weights/best.pt
+      - TESSERACT_CMD=/usr/bin/tesseract
+      - LOG_LEVEL=INFO
+    depends_on:
+      - redis
+    networks:
+      - app_network
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: parkingdb
+      POSTGRES_USER: parking
+      POSTGRES_DB: parking
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://api:8000
+      - REACT_APP_PARKING_SERVICE_URL=http://localhost:8000
+    networks:
+      - app_network
+
+volumes:
+  pgdata:
+  redis_data:
+
+networks:
+  app_network:
+    driver: bridge

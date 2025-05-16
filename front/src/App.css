@@ -1,0 +1,160 @@
+/* Reset básico */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f8fafc;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Contenedor principal */
+.main {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  padding: 3rem 2rem;
+  box-sizing: border-box;
+}
+
+/* Título */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Grid de paneles */
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  align-items: start;
+}
+
+/* Panel individual */
+.panel {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 1.2rem;
+  width: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Imagen */
+.panel img {
+  border-radius: 12px;
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* Botones */
+button {
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  width: 100%;
+}
+
+/* Botón individual */
+button:not(.full-width-button) {
+  background-color: #2563eb;
+  color: white;
+}
+
+button:not(.full-width-button):hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Botones inferiores */
+.full-width-button {
+  grid-column: span 2;
+  background-color: #10b981;
+  color: white;
+  font-weight: 600;
+  padding: 1rem;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.full-width-button:hover {
+  background-color: #059669;
+}
+
+/* Tarjeta de resultados */
+.result-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f1f5f9;
+  border-left: 6px solid #2563eb;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.result-card h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #1e293b;
+}
+
+.result-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-card li {
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .full-width-button {
+    grid-column: span 1;
+  }
+}

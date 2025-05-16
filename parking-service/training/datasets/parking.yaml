@@ -1,0 +1,6 @@
+path: .
+train: training/datasets/images/train
+val: training/datasets/images/val
+
+nc: 3
+names: ["car", "empty_slot", "special_slot"]

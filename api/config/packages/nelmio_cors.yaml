@@ -1,0 +1,11 @@
+nelmio_cors:
+    defaults:
+        origin_regex: true
+        allow_origin: ['*']
+        allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
+        allow_headers: ['Content-Type', 'Authorization']
+        expose_headers: ['Link']
+        max_age: 3600
+    paths:
+        '^/': # Asegura que esta configuración se aplique a todas las rutas de la API
+            allow_origin: [ 'http://localhost:5173' ]  # Permite solo el frontend que corre en el puerto 5173 (cambia si es otro puerto)

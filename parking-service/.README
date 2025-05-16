@@ -1,0 +1,17 @@
+Estructura de micro
+
+parking-service/
+├── Dockerfile
+├── requirements.txt
+├── app/
+│   ├── __init__.py
+│   ├── main.py          # API FastAPI
+│   ├── detector.py      # Lógica de detección
+│   ├── models.py        # Modelos Pydantic
+│   └── config.py        # Configuración
+├── training/
+│   ├── train.py         # Script de entrenamiento
+│   └── dataset_utils.py # Herramientas para datasets
+├── models/              # Modelos YOLO entrenados
+├── datasets/            # Datos de entrenamiento
+└── tests/               # Pruebas unitarias
